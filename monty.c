@@ -66,3 +66,42 @@ int read(char *filename)
 	free_stack(&stack);
 	return (EXIT_SUCCESS);
 }
+/**
+* operations - selects the correct option from tokens
+*
+* @tokens: instruction taken from the user input
+*
+* @stack: pointer to head
+*
+* @line_num: line where the instruction appears
+*
+* Return: no return
+*/
+void operations(char *tokens, stack_t **stack, unsigned int line_num)
+{
+	instruction_t ops[] = {
+		{"push", op_push},
+		{"pall", op_pall},
+		{"pint", op_pint},
+		{"pop", op_pop},
+		{"swap", op_swap},
+		{"add", op_add},
+		{"nop", op_nop},
+		{NULL, NULL}
+	};
+	unsigned int i = 0;
+
+	for (i = 0; ops[i].opcode; i++)
+	{
+		if (strcmp(tokens, ops[i].opcode) == 0)
+		{
+			ops[i].f(stack, line_num);
+			return;
+		}
+	}
+	if (strlen(tokens) != 0 && tokens[0] != '#')
+	{
+		printf("L%d: unknown instruction %s\n", line_num, tokens);
+		exit(EXIT_FAILURE);
+	}
+}
