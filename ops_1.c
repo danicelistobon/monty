@@ -97,3 +97,34 @@ void op_pop(stack_t **stack, unsigned int line_num)
 	(*stack) = (*stack)->next;
 	free(node);
 }
+/**
+* op_swap - swaps the top two elements of the stack
+*
+* @stack: pointer to head
+*
+* @line_num: line where the instruction appears (unused)
+*
+* Return: no return
+*/
+void op_swap(stack_t **stack, unsigned int line_num __attribute__((unused)))
+{
+	stack_t *temp;
+
+	if (!(*stack) || !((*stack)->next))
+	{
+		printf("L%u: can't swap, stack too short\n", line_num);
+		exit(EXIT_FAILURE);
+	}
+	temp = (*stack)->next;
+	(*stack)->prev = (*stack)->next;
+	(*stack)->next = temp->next;
+	temp->prev = NULL;
+	(*stack)->prev = temp;
+
+	if (temp->next)
+	{
+		temp->next->prev = *stack;
+	}
+	temp->next = *stack;
+	(*stack) = (*stack)->prev;
+}
