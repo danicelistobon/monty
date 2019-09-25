@@ -57,3 +57,21 @@ void op_pall(stack_t **stack, unsigned int line_num __attribute__((unused)))
 		nodes = nodes->next;
 	}
 }
+/**
+* op_pint - prints the value at the top of the stack
+*
+* @stack: pointer to head
+*
+* @line_num: line where the instruction appears
+*
+* Return: no return
+*/
+void op_pint(stack_t **stack, unsigned int line_num)
+{
+	if (stack == NULL || *stack == NULL)
+	{
+		printf("L%u: can't pint, stack empty\n", line_num);
+		exit(EXIT_FAILURE);
+	}
+	printf("%d\n", (*stack)->n);
+}
