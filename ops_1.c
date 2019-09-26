@@ -33,6 +33,8 @@ void op_push(stack_t **stack, unsigned int line_num)
 		if (token[i] < 48 || token[i] > 57)
 		{
 			printf("L%u: usage: push integer\n", line_num);
+			error_free(*stack);
+			free(new_node);
 			exit(EXIT_FAILURE);
 		}
 	}

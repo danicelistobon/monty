@@ -50,6 +50,7 @@ extern global_t global;
 
 int read(char *filename);
 void free_stack(stack_t **stack);
+void error_free(stack_t *stack);
 void operations(char *tokens, stack_t **stack, unsigned int line_num);
 void op_push(stack_t **stack, unsigned int line_num);
 void op_pall(stack_t **stack, unsigned int line_num __attribute__((unused)));

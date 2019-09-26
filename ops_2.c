@@ -36,3 +36,22 @@ void op_nop(stack_t **stack, unsigned int line_num)
 	(void) stack;
 	(void) line_num;
 }
+/**
+* error_free - frees in error case
+*
+* @stack: pointer to head
+*
+* Return: no return
+*/
+void error_free(stack_t *stack)
+{
+	if (global.line)
+	{
+		free(global.line);
+	}
+	if (global.filenm)
+	{
+		free(global.filenm);
+	}
+	free(stack);
+}

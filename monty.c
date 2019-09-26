@@ -1,4 +1,5 @@
 #include "monty.h"
+global_t global;
 /**
 * main - main function
 *
@@ -28,8 +29,6 @@ int main(int argc, char *argv[])
 int read(char *filename)
 {
 	stack_t *stack = NULL;
-	FILE *file;
-	char *line = NULL;
 	size_t size = 0;
 	char *tokens = NULL;
 	unsigned int line_num = 0;
@@ -39,18 +38,18 @@ int read(char *filename)
 		printf("Error: Can't open file %s\n", filename);
 		exit(EXIT_FAILURE);
 	}
-	file = fopen(filename, "r");
+	global.filenm = fopen(filename, "r");
 
-	if (file == NULL)
+	if (global.filenm == NULL)
 	{
 		printf("Error: Can't open file %s\n", filename);
 		exit(EXIT_FAILURE);
 	}
-	while (getline(&line, &size, file) != -1)
+	while (getline(&global.line, &size, global.filenm) != -1)
 	{
 		line_num++;
 
-		tokens = strtok(line, " \r\n\t");
+		tokens = strtok(global.line, " \r\n\t");
 
 		if (tokens == NULL)
 		{
@@ -61,8 +60,8 @@ int read(char *filename)
 			operations(tokens, &stack, line_num);
 		}
 	}
-	fclose(file);
-	free(line);
+	fclose(global.filenm);
+	free(global.line);
 	free_stack(&stack);
 	return (EXIT_SUCCESS);
 }
