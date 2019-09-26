@@ -12,7 +12,7 @@ void op_push(stack_t **stack, unsigned int line_num)
 {
 	stack_t *new_node = malloc(sizeof(stack_t));
 	char *token = NULL;
-	int num = 0;
+	int num = 0, i = 0;
 
 	if (new_node == NULL)
 	{
@@ -25,6 +25,16 @@ void op_push(stack_t **stack, unsigned int line_num)
 	{
 		printf("L%u: usage: push integer\n", line_num);
 		exit(EXIT_FAILURE);
+	}
+	i = strlen(token);
+
+	if (i--)
+	{
+		if (token[i] < 48 || token[i] > 57)
+		{
+			printf("L%u: usage: push integer\n", line_num);
+			exit(EXIT_FAILURE);
+		}
 	}
 	num = atoi(token);
 
