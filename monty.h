@@ -35,6 +35,19 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+/**
+* struct global_s - global structure
+* @line: pointer
+* @filenm: pointer
+*/
+typedef struct global_s
+{
+	char *line;
+	FILE *filenm;
+} global_t;
+
+extern global_t global;
+
 int read(char *filename);
 void free_stack(stack_t **stack);
 void operations(char *tokens, stack_t **stack, unsigned int line_num);
