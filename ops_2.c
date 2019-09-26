@@ -22,3 +22,17 @@ void op_add(stack_t **stack, unsigned int line_num)
 	op_pop(stack, line_num);
 	(*stack)->n += temp;
 }
+/**
+* op_nop - doesn't do anything
+*
+* @stack: pointer to head
+*
+* @line_num: line where the instruction appears
+*
+* Return: no return
+*/
+void op_nop(stack_t **stack, unsigned int line_num)
+{
+	(void) stack;
+	(void) line_num;
+}
