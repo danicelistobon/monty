@@ -15,6 +15,7 @@ void op_add(stack_t **stack, unsigned int line_num)
 	if (*stack == NULL || (*stack)->next == NULL)
 	{
 		printf("L%u: can't add, stack too short\n", line_num);
+		error_free(*stack);
 		exit(EXIT_FAILURE);
 	}
 
