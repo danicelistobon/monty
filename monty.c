@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
 {
 	if (argc != 2)
 	{
-		printf("USAGE: monty file\n");
+		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
 	read(argv[1]);
@@ -35,14 +35,14 @@ int read(char *filename)
 
 	if (!filename)
 	{
-		printf("Error: Can't open file %s\n", filename);
+		fprintf(stderr, "Error: Can't open file %s\n", filename);
 		exit(EXIT_FAILURE);
 	}
 	global.filenm = fopen(filename, "r");
 
 	if (global.filenm == NULL)
 	{
-		printf("Error: Can't open file %s\n", filename);
+		fprintf(stderr, "Error: Can't open file %s\n", filename);
 		exit(EXIT_FAILURE);
 	}
 	while (getline(&global.line, &size, global.filenm) != -1)
@@ -100,7 +100,7 @@ void operations(char *tokens, stack_t **stack, unsigned int line_num)
 	}
 	if (strlen(tokens) != 0 && tokens[0] != '#')
 	{
-		printf("L%d: unknown instruction %s\n", line_num, tokens);
+		fprintf(stderr, "L%d: unknown instruction %s\n", line_num, tokens);
 		error_free(*stack);
 		exit(EXIT_FAILURE);
 	}

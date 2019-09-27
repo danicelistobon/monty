@@ -16,14 +16,14 @@ void op_push(stack_t **stack, unsigned int line_num)
 
 	if (new_node == NULL)
 	{
-		printf("Error: malloc failed\n");
+		fprintf(stderr, "Error: malloc failed\n");
 		error_free(*stack);
 		exit(EXIT_FAILURE);
 	}
 	token = strtok(NULL, " \r\n\t");
 	if (token == NULL || stack == NULL)
 	{
-		printf("L%u: usage: push integer\n", line_num);
+		fprintf(stderr, "L%u: usage: push integer\n", line_num);
 		error_free(*stack);
 		free(new_node);
 		exit(EXIT_FAILURE);
@@ -34,7 +34,7 @@ void op_push(stack_t **stack, unsigned int line_num)
 	{
 		if (token[i] < 48 || token[i] > 57)
 		{
-			printf("L%u: usage: push integer\n", line_num);
+			fprintf(stderr, "L%u: usage: push integer\n", line_num);
 			error_free(*stack);
 			free(new_node);
 			exit(EXIT_FAILURE);
@@ -83,7 +83,7 @@ void op_pint(stack_t **stack, unsigned int line_num)
 {
 	if (stack == NULL || *stack == NULL)
 	{
-		printf("L%u: can't pint, stack empty\n", line_num);
+		fprintf(stderr, "L%u: can't pint, stack empty\n", line_num);
 		error_free(*stack);
 		exit(EXIT_FAILURE);
 	}
@@ -104,7 +104,7 @@ void op_pop(stack_t **stack, unsigned int line_num)
 
 	if (stack == NULL || *stack == NULL)
 	{
-		printf("L%u: can't pop an empty stack\n", line_num);
+		fprintf(stderr, "L%u: can't pop an empty stack\n", line_num);
 		error_free(*stack);
 		exit(EXIT_FAILURE);
 	}
@@ -127,7 +127,7 @@ void op_swap(stack_t **stack, unsigned int line_num __attribute__((unused)))
 
 	if (!(*stack) || !((*stack)->next))
 	{
-		printf("L%u: can't swap, stack too short\n", line_num);
+		fprintf(stderr, "L%u: can't swap, stack too short\n", line_num);
 		error_free(*stack);
 		exit(EXIT_FAILURE);
 	}
