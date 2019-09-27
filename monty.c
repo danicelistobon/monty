@@ -101,6 +101,7 @@ void operations(char *tokens, stack_t **stack, unsigned int line_num)
 	if (strlen(tokens) != 0 && tokens[0] != '#')
 	{
 		printf("L%d: unknown instruction %s\n", line_num, tokens);
+		error_free(*stack);
 		exit(EXIT_FAILURE);
 	}
 }
