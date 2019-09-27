@@ -59,5 +59,9 @@ void op_pop(stack_t **stack, unsigned int line_num);
 void op_swap(stack_t **stack, unsigned int line_num __attribute__((unused)));
 void op_add(stack_t **stack, unsigned int line_num);
 void op_nop(stack_t **stack, unsigned int line_num);
+void op_sub(stack_t **stack, unsigned int line_num);
+void op_div(stack_t **stack, unsigned int line_num);
+void op_mul(stack_t **stack, unsigned int line_num);
+void op_mod(stack_t **stack, unsigned int line_num);
 
 #endif
