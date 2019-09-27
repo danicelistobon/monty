@@ -80,4 +80,27 @@ void op_sub(stack_t **stack, unsigned int line_num)
 	op_pop(stack, line_num);
 	(*stack)->n -= temp;
 }
+/**
+* op_mul - multiplies the top two elements of the stack
+*
+* @stack: pointer to head
+*
+* @line_num: line where the instruction appears
+*
+* Return: no return
+*/
+void op_mul(stack_t **stack, unsigned int line_num)
+{
+	int temp;
 
+	if (*stack == NULL || (*stack)->next == NULL)
+	{
+		fprintf(stderr, "L%u: can't mul, stack too short\n", line_num);
+		error_free(*stack);
+		exit(EXIT_FAILURE);
+	}
+
+	temp = (*stack)->n;
+	op_pop(stack, line_num);
+	(*stack)->n *= temp;
+}
