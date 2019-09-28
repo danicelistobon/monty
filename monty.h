@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -63,5 +64,7 @@ void op_sub(stack_t **stack, unsigned int line_num);
 void op_div(stack_t **stack, unsigned int line_num);
 void op_mul(stack_t **stack, unsigned int line_num);
 void op_mod(stack_t **stack, unsigned int line_num);
+void op_pchar(stack_t **stack, unsigned int line_num);
+void op_pstr(stack_t **stack, unsigned int line_num __attribute__((unused)));
 
 #endif
