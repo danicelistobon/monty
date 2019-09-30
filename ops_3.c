@@ -76,14 +76,14 @@ void op_pchar(stack_t **stack, unsigned int line_num)
 
 	if (*stack == NULL)
 	{
-		printf("L%u: can't pchar, stack empty\n", line_num);
+		fprintf(stderr, "L%u: can't pchar, stack empty\n", line_num);
 		exit(EXIT_FAILURE);
 	}
 	i = (*stack)->n;
 
 	if (!(i >= 0 && i <= 127))
 	{
-		printf("L%u: can't pchar, value out of range", line_num);
+		fprintf(stderr, "L%u: can't pchar, value out of range\n", line_num);
 		exit(EXIT_FAILURE);
 	}
 	putchar(i);
